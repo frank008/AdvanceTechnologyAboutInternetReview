@@ -1,0 +1,18 @@
+微信公众号开发
+
+准备
+
+一.在微信公众平台-开发-基本配置中配置自己服务器资源响应链接
+
+   1.需要把ip加入到白名单，局域网的话可以使用 ngrok工具 进行解决
+
+    工具链接：https://github.com/zhouminpz/tool
+
+    使用方法：https://blog.csdn.net/befroe_you/article/details/78611965
+
+    域名查IP：http://www.ip138.com/
+
+   2.服务器需要提供GET方法，用于微信请求配置链接进行验证。
+
+搭建ngrok 服务器
+https://blog.csdn.net/yjc_1111/article/details/79353718
