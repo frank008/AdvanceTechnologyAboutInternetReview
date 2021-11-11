@@ -22,4 +22,22 @@ rpush：从右变推入
 rpop:从右边弹出
 llen：查看某个list数据类型的长度
 
+4.set类型支持的常用命令：
+sadd:添加数据
+scard:查看set数据中存在的元素个数
+sismember:判断set数据中是否存在某个元素
+srem:删除某个set数据中的元素
+
+5.hash数据类型支持的常用命令:
+hset:添加hash数据
+hget:获取hash数据
+hmget:获取多个hash数据
+
+6.sort set和hash很相似,也是映射形式的存储:
+zadd:添加
+zcard:查询
+zrange:数据排序
+
+
+
 # 
