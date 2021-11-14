@@ -1,0 +1,22 @@
+chmod 775 stopAllService.sh
+#!/bin/bash 
+for ((i=2;i<5;i++)) 
+do 
+rm -rf /mnt/yinseproject/yinse$i 
+rm -rf /mnt/yinseproject/logs/* 
+pid=$(netstat -apn|grep $((7010+$i))|awk '{print $7}'|cut -d/ -f1) 
+kill -9 $pid echo '序数:'$i ' 关闭线程PID:'$pid 
+done 
+
+开启服务：nohup > my.out 2>$1 $ 重定向所有日志到 指定文件里 编写脚本：startAllServices.sh 
+授权： chmod 775 startAllServices.sh 
+
+#!/bin/bash
+for ((i=2;i<5;i++)) 
+do rm -rf /mnt/yinseproject/yinse$i/*
+mkdir -p /mnt/yinseproject/yinse$i
+mkdir -p /mnt/yinseproject/logs 
+cp /mnt/yinseproject/dataCenter-1.0-SNAPSHOT.jar /mnt/yinseproject/yinse$i/
+nohup java -jar -DServer.port=$((7010+$i))  /mnt/yinseproject/yinse$i/dataCenter-1.0-SNAPSHOT.jar > /mnt/yinseproject/logs/yinse:701$i.out 2>&1 &
+echo '启动服务端口: '$((7010+$i)) $DATE
+done
