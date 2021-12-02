@@ -630,35 +630,7 @@ refreshTokenExpireTime: 1800
 #Shiro缓存过期时间-5分钟-5*60(秒为单位)(一般设置与AccessToken过期时间一致)
 shiroCacheExpireTime: 300
  
-#文件上传配置
-aliyun:
-  #Endpoint（地域节点）
-  endpoint: oss-cn-beijing.aliyuncs.com
-  #用户的accessKeyId
-  accessKeyId: LTAI4G6KnAptiJMTKreMzX3i
-  #用户的accessKeySecret
-  accessKeySecret: GH1Ui7spX5Wk57RA00H3oyUWlgfrSp
-  #使用的bucket名称
-  bucketName: gufeng1
-  #Bucket 域名
-  urlPrefix: http://gufeng1.oss-cn-beijing.aliyuncs.com/
-  servlet:
-    multipart:
-      #最大上传文件大小
-      max-file-size: 1000MB
-      #一次请求的多个文件大小
-      max-request-size: 1000MB
 
-
- 
-apache:
-  rocketmq:
-    namesrvAddr: 8.140.115.158:9876
-    consumer:
-      pushConsumer: YinseSentGiftsConsumerGroup
-      pushPeachConsumer: YinseSentPeachConsumerGroup
-    producer:
-      producerGroup: YinseSentGiftsGroup
 
 =======================
 启动类
@@ -979,11 +951,11 @@ class DBUtil {
 
     public static DataSourceConfig getDataSourceConfig(){
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://8.140.115.158:3306/yinse_im_database?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql:");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("YinSe#!");
+        dsc.setUsername("");
+        dsc.setPassword("");
 
         return dsc;
     }
