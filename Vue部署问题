@@ -1,0 +1,153 @@
+vue 项目部署
+
+vue 使用淘宝镜像
+npm install --registry=https://registry.npm.taobao.org
+更新镜像源
+
+1）安装配置git环境
+(2）更换npm源  
+npm config set registry https://registry.npm.taobao.org
+-------------------------------------
+1.安装 python 3 并设置 环境变量
+2.安装配置git环境
+3.安装 最新 nodejs  配置环境变量
+4.github 项目， Github用户 需要配置 git ,生成公钥 私钥
+---------------------------------------------
+无法访问 https://github.com/..git仓库
+git 显示全局配置
+git config --global -l
+
+设置了 ssl的verify
+git config --global http.sslVerify false 
+
+打开新的窗口 重新 
+npm install
+===============================
+===============================
+未能加载 Visual C++ 组件“VCBuild.exe”
+安装构建工具  
+一定要使用管理员打开命令才有权限构建工具
+
+下载  .NET Framework  4.6.2 安装
+https://dotnet.microsoft.com/en-us/download/visual-studio-sdks
+npm install --global --production windows-build-tools@4.0.0
+npm config set msvs_version 2017
+
+https://github.com/nodejs/node-gyp 报错
+------------------------------------------------------
+更换npm源 
+npm config set registry https://registry.npm.taobao.org
+
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+cnpm install -g @vue/cli
+npm install -g @vue/cli-service
+npm install -g @vue/cli-plugin-babel
+npm install -g @vue/cli-plugin-eslint
+-------------------------------------------------------------------------------
+
+解决error MSB4019: 未找到导入的项目“E:\Microsoft.Cpp.Default.props”
+npm config set msvs_version 201
+
+-----------------------------------------------------
+有时候用npm拉取包可能会很慢，可以用淘宝npm镜像代替npm进行拉包，就像github和gitee
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+cnpm install express -g
+
+===============================
+===============================
+===============================
+在node安装目录
+创建 node_global 和 node_cache文件夹
+
+2，设置环境变量：
+用户变量设置：将用户变量中 PATH 的值改成 C:\Program Files\nodejs\node_global，没有PATH，可以直接添加。
+系统变量设置：添加变量 NODE_PATH  值为：C:\Program Files\nodejs\node_modules
+
+3，打开cmd，执行
+npm config set prefix "C:\Program Files\nodejs\node_global" 
+npm config set cache "C:\Program Files\nodejs\node_cache"
+----------------------------------------------------------------
+ 
+npm install --global node-gyp@latest
+
+npm install --global node-sass
+===============================
+Node Sass does not yet support your current environment解决办法
+nodejs项目目录下的node_modules
+cnpm install
+===============================
+gyp ERR! configure error gyp ERR! stack Error: Command failed: C:\Python38\python.EXE -c import sys
+
+// 设置 npm  python 环境
+npm config set python  C:\Python27
+// 重新执行npm
+npm install
+
+===============================
+压缩 gzip 低版本打包
+卸载当前的webpack ，然后重新指定一个全局版本。
+npm install -g compression-webpack-plugin
+npm install --save-dev compression-webpack-plugin@1.1.12
+packagejson修改版本号  "compression-webpack-plugin": "1.1.12"   直接npm install。
+
+npm uninstall webpack
+npm install webpack@4.5.6 -g
+
+配置完成之后打包会发现文件都变成.gz
+
+vue.config.js 配置
+module.exports = {
+configureWebpack: {
+    // provide the app's title in webpack's name field, so that
+    // it can be accessed in index.html to inject the correct title.
+    name: name,
+    resolve: {
+      alias: {
+        '@': resolve('src')
+      }
+    },
+    plugins: [
+      new CompressionPlugin({
+        test: /\.(js|css)?$/i, // 哪些文件要压缩
+        filename: '[path].gz[query]',　// 压缩后的文件名
+        algorithm: 'gzip',　// 使用gzip压缩
+        minRatio: 1,　// 压缩率小于1才会压缩
+        deleteOriginalAssets: true // 删除未压缩的文件，谨慎设置，如果希望提供非gzip的资源，可不设置或者设置为false
+      })
+    ]
+},
+}
+===============================
+
+
+Git使用出现git@github.com: Permission denied (publickey). 处理
+网址
+https://blog.csdn.net/qq_43768946/article/details/90411154
+
+进入git bash界面然后：
+第一步，git config --global --list 验证邮箱与GitHub注册时输入的是否一致
+
+第二步，通过git config --global user.name “yourname”，git config --global user.email “email@email.com ”
+（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。
+
+第三步，ssh-keygen -t rsa -C “这里换上你的邮箱”，一路回车，在出现选择时输入Y，再一路回车直到生成密钥。
+
+
+会在  C:\Users\Administrator\.ssh 路径下生成一个.ssh文件夹，密钥就存储在其中。
+ssh-keygen -t rsa -C  "邮箱地址"
+
+第四步，到github仓库，添加秘钥，
+settings -> SSH and GPG keys -> SSH keys (new  SSH key)
+Title : 名字 随便起
+Key : 复制 id_rsa.pub 的内容      C:\Users\Administrator\.ssh 里面
+
+点击Add SSH key
+第五部，ssh -T git@github.com 测试一下通不通，通了显示如下
+
+。。。You've successfully authenticated ....
+---------------------------------------
+即可正常使用。
+不通就是
+ssh-agent -s
+ssh-add   ~/.ssh/id_rsa 操作这两步。 添加私钥到本地 git里面
+========================================
